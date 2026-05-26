@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Mate | Find Your Perfect Travel Companion</title>
+    <meta name="description" content="Connect with verified travelers, share itineraries, and explore the world together safely.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===================== AUTH PAGE ===================== -->
+    <div id="authPage" class="auth-page">
+        <div class="auth-left">
+            <div class="auth-brand">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>Travel Mate</span>
+            </div>
+            <div class="auth-left-content">
+                <h1>Your Next Adventure<br>Starts with the <span>Right People</span></h1>
+                <p>Connect with verified travelers worldwide. Share itineraries, split costs, and create unforgettable memories together.</p>
+                <div class="auth-stats">
+                    <div class="auth-stat"><span>50K+</span><p>Travelers</p></div>
+                    <div class="auth-stat"><span>120+</span><p>Countries</p></div>
+                    <div class="auth-stat"><span>98%</span><p>Satisfaction</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="auth-right">
+            <div class="auth-card">
+                <!-- Login Form -->
+                <div id="loginForm">
+                    <div class="auth-card-header">
+                        <h2>Welcome Back</h2>
+                        <p>Login to your account</p>
+                    </div>
+                    <form id="loginFormEl">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-lock"></i> Password</label>
+                            <div class="password-wrap">
+                                <input type="password" id="loginPassword" placeholder="Enter password" required>
+                                <i class="fa-regular fa-eye toggle-pass" data-target="loginPassword"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-auth">Login <i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                    <div class="auth-switch">
+                        Don't have an account? <a href="#" id="showSignup">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="signupForm" style="display:none;">
+                    <div class="auth-card-header">
+                        <h2>Create Account</h2>
+                        <p>Join the travel community</p>
+                    </div>
+                    <form id="signupFormEl">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-user"></i> Full Name</label>
+                            <input type="text" id="signupName" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="signupPhone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+                            <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-lock"></i> Password</label>
+                            <div class="password-wrap">
+                                <input type="password" id="signupPassword" placeholder="Create password" required>
+                                <i class="fa-regular fa-eye toggle-pass" data-target="signupPassword"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-auth">Create Account <i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                    <div class="auth-switch">
+                        Already have an account? <a href="#" id="showLogin">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== MAIN APP ===================== -->
+    <div id="mainApp" style="display:none;">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Logo: far left -->
+                <a href="#" class="logo nav-btn" data-target="home">
+                    <i class="fa-solid fa-plane-departure"></i> Travel Mate
+                </a>
+
+                <!-- Right corner: nav links + user profile together -->
+                <div class="nav-right-group">
+                    <div class="nav-links">
+                        <a href="#" class="nav-btn" data-target="home" id="navHome">Home</a>
+                        <a href="#" class="nav-btn" data-target="explore" id="navExplore">Explore Trips</a>
+                        <a href="#" class="nav-btn" data-target="dashboard" id="navDashboard">Dashboard</a>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <div class="user-menu">
+                        <div class="user-profile" id="userProfileToggle">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="avatar" id="navAvatar">
+                            <span class="username" id="navUsername">Atman <i class="fa-solid fa-circle-check verified-badge"></i></span>
+                            <i class="fa-solid fa-chevron-down fa-xs"></i>
+                        </div>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <a href="#" class="nav-btn" data-target="profile"><i class="fa-solid fa-user"></i> My Profile</a>
+                            <a href="#" class="nav-btn" data-target="dashboard"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+                            <div style="border-top:1px solid var(--border-color); margin:4px 0;"></div>
+                            <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ===== HOME PAGE ===== -->
+        <div id="home" class="page">
+            <header class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fa-solid fa-star"></i> Trusted by 50,000+ travelers</div>
+                    <h1>Don't Travel Alone.<br>Find Your Perfect <span>Travel Mate</span>.</h1>
+                    <p>Connect with verified travelers, share itineraries, and explore the world together safely.</p>
+                    <div class="search-bar">
+                        <div class="search-input">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input type="text" id="searchInputLocation" placeholder="Where to? (e.g. Bali, Paris)">
+                        </div>
+                        <div class="search-input">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="text" id="searchInputDate" placeholder="When? (e.g. Dec)">
+                        </div>
+                        <button class="btn-primary" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- How It Works -->
+            <section id="how-it-works">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                    <p>Find your travel companion in 3 easy steps</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card fade-in-up">
+                        <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="step-number">01</div>
+                        <h3>Search Trips</h3>
+                        <p>Browse thousands of verified travel plans from fellow adventurers worldwide.</p>
+                    </div>
+                    <div class="step-card fade-in-up">
+                        <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <div class="step-number">02</div>
+                        <h3>Connect & Match</h3>
+                        <p>Send join requests to trip creators and get matched based on travel style.</p>
+                    </div>
+                    <div class="step-card fade-in-up">
+                        <div class="step-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="step-number">03</div>
+                        <h3>Travel Together</h3>
+                        <p>Embark on unforgettable adventures with your new travel companions!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== EXPLORE PAGE ===== -->
+        <div id="explore" class="page" style="display:none;">
+            <section>
+                <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                    <div>
+                        <h2>Featured Trips</h2>
+                        <p>Discover amazing journeys waiting for you</p>
+                    </div>
+                    <button class="btn-primary" id="newTripBtn"><i class="fa-solid fa-plus"></i> Create New Trip</button>
+                </div>
+                <div id="searchResults" style="display:none; margin-bottom:1rem;">
+                    <p id="searchResultsText" style="color:var(--text-secondary);"></p>
+                    <a href="#" id="clearSearch" style="color:var(--secondary-color); font-size:0.9rem;">Clear search</a>
+                </div>
+                <div class="trips-grid" id="tripsGrid"></div>
+            </section>
+        </div>
+
+        <!-- ===== DASHBOARD PAGE ===== -->
+        <div id="dashboard" class="page" style="display:none;">
+            <section class="dashboard-section">
+                <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+                    <h2>Your Dashboard</h2>
+                    <p>Manage your trips and connections</p>
+                </div>
+                <div class="dashboard-grid">
+
+                    <!-- LEFT: Profile Card -->
+                    <div class="dash-profile-card">
+                        <div class="dash-profile-top">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="dash-avatar" id="dashAvatar">
+                            <h3 id="dashName">Atman <i class="fa-solid fa-circle-check verified-badge"></i></h3>
+                            <p class="dash-bio" id="dashBio">Adventure seeker & food lover. Always ready for the next hike!</p>
+                            <div class="dash-rating"><i class="fa-solid fa-star"></i> 4.9 &bull; Verified Traveler</div>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-val" id="statUpcoming">5</span>
+                                <span class="stat-lbl">Upcoming</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-val">12</span>
+                                <span class="stat-lbl">Completed</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-val">842</span>
+                                <span class="stat-lbl">Profile Views</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-val">1.2K</span>
+                                <span class="stat-lbl">Trip Views</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-outline nav-btn" data-target="profile" style="width:100%; margin-top:1rem;">
+                            <i class="fa-solid fa-pen"></i> Manage Profile
+                        </button>
+                    </div>
+
+                    <!-- RIGHT SIDE CARDS -->
+                    <div class="dash-cards-col">
+
+                        <!-- My Created Trips -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3><i class="fa-solid fa-suitcase-rolling"></i> My Created Trips</h3>
+                                <button class="btn-sm-primary" id="newTripBtnDash"><i class="fa-solid fa-plus"></i> New Trip</button>
+                            </div>
+                            <div id="myTripsList"></div>
+                        </div>
+
+                        <!-- Trips I'm Joining -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3><i class="fa-solid fa-users"></i> Trips I'm Joining</h3>
+                                <a href="#" class="nav-btn link-sm" data-target="explore">Browse more</a>
+                            </div>
+                            <div id="joinedTripsList"></div>
+                        </div>
+
+                        <!-- Pending Requests (others want to join my trips) -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3><i class="fa-solid fa-bell"></i> Pending Requests</h3>
+                                <span class="badge" id="pendingCount">2</span>
+                            </div>
+                            <div id="pendingRequestsList"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== PROFILE PAGE ===== -->
+        <div id="profile" class="page" style="display:none;">
+            <section class="profile-section">
+                <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+                    <h2>My Profile</h2>
+                    <p>View and manage your personal information</p>
+                </div>
+                <div class="profile-grid">
+
+                    <!-- LEFT: Avatar & Stats -->
+                    <div class="profile-left-col">
+                        <div class="profile-avatar-card">
+                            <div class="avatar-wrap">
+                                <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="profile-big-avatar" id="profileAvatar">
+                                <div class="avatar-verified"><i class="fa-solid fa-circle-check"></i></div>
+                            </div>
+                            <h3 id="profileDisplayName">Atman</h3>
+                            <p id="profileDisplayEmail" style="color:var(--text-secondary); font-size:0.9rem;">atman@travelmate.com</p>
+                            <div class="profile-badge-row">
+                                <span class="profile-badge"><i class="fa-solid fa-shield-halved"></i> Verified</span>
+                                <span class="profile-badge"><i class="fa-solid fa-star"></i> 4.9 Rating</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats-card">
+                            <h4>Activity Stats</h4>
+                            <div class="profile-stat-row">
+                                <span><i class="fa-solid fa-plane"></i> Upcoming Trips</span>
+                                <strong>5</strong>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span><i class="fa-solid fa-flag-checkered"></i> Completed</span>
+                                <strong>12</strong>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span><i class="fa-regular fa-eye"></i> Profile Views</span>
+                                <strong>842</strong>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span><i class="fa-solid fa-compass"></i> Trip Views</span>
+                                <strong>1.2K</strong>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span><i class="fa-solid fa-users"></i> Connections</span>
+                                <strong>34</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Edit Form -->
+                    <div class="profile-right-col">
+                        <div class="profile-edit-card">
+                            <div class="profile-edit-header">
+                                <h3>Personal Information</h3>
+                                <button class="btn-sm-primary" id="enableEditBtn"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+                            </div>
+
+                            <form id="profileForm">
+                                <div class="profile-form-row">
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" id="profileName" value="Atman" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="tel" id="profilePhone" value="+1 (555) 123-4567" disabled>
+                                    </div>
+                                </div>
+                                <div class="profile-form-row">
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="email" id="profileEmail" value="atman@travelmate.com" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Location</label>
+                                        <input type="text" id="profileLocation" value="New York, USA" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bio / Personal Details</label>
+                                    <textarea id="profileBio" rows="4" disabled>Adventure seeker & food lover. Always ready for the next hike!</textarea>
+                                </div>
+                                <div class="profile-form-row" id="saveRow" style="display:none;">
+                                    <button type="submit" class="btn-primary" style="flex:1;">Save Changes</button>
+                                    <button type="button" class="btn-cancel" id="cancelEditBtn">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Travel Preferences -->
+                        <div class="profile-edit-card" style="margin-top:1.5rem;">
+                            <div class="profile-edit-header">
+                                <h3>Travel Preferences</h3>
+                            </div>
+                            <div class="pref-tags">
+                                <span class="pref-tag active"><i class="fa-solid fa-mountain"></i> Adventure</span>
+                                <span class="pref-tag active"><i class="fa-solid fa-utensils"></i> Food & Culture</span>
+                                <span class="pref-tag"><i class="fa-solid fa-umbrella-beach"></i> Beach</span>
+                                <span class="pref-tag active"><i class="fa-solid fa-hiking"></i> Hiking</span>
+                                <span class="pref-tag"><i class="fa-solid fa-city"></i> City Tours</span>
+                                <span class="pref-tag"><i class="fa-solid fa-camera"></i> Photography</span>
+                                <span class="pref-tag active"><i class="fa-solid fa-snowflake"></i> Winter Sports</span>
+                                <span class="pref-tag"><i class="fa-solid fa-water"></i> Water Sports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo"><i class="fa-solid fa-plane-departure"></i> Travel Mate</a>
+                    <p>Connecting adventurers across the globe since 2024.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#" class="nav-btn" data-target="home">Home</a>
+                    <a href="#" class="nav-btn" data-target="explore">Explore Trips</a>
+                    <a href="#" class="nav-btn" data-target="dashboard">Dashboard</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Travel Mate. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div><!-- /mainApp -->
+
+    <!-- ===== CREATE TRIP MODAL ===== -->
+    <div class="modal" id="newTripModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 style="color:var(--primary-color); margin-bottom:0.5rem;"><i class="fa-solid fa-plus"></i> Create New Trip</h2>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Share your travel plans with the community</p>
+            <form id="createTripForm">
+                <div class="form-group">
+                    <label>Trip Title</label>
+                    <input type="text" id="tripTitle" placeholder="e.g. Bali Beach Adventure" required>
+                </div>
+                <div class="profile-form-row">
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input type="text" id="tripDestination" placeholder="e.g. Bali, Indonesia" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget (per person)</label>
+                        <input type="text" id="tripBudget" placeholder="e.g. $1,500" required>
+                    </div>
+                </div>
+                <div class="profile-form-row">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="tripStart" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" id="tripEnd" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Max Travelers</label>
+                    <input type="number" id="tripCapacity" min="2" max="20" value="4" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Publish Trip <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
